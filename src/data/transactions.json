@@ -1,0 +1,42 @@
+[
+  {
+    "id": "t1",
+    "category": "Payment",
+    "title": "Groceries at LokaMart",
+    "date": "May 5, 2026",
+    "amount": "-Rp 235.000",
+    "type": "Send"
+  },
+  {
+    "id": "t2",
+    "category": "Top Up",
+    "title": "Bank Transfer from BCA",
+    "date": "May 4, 2026",
+    "amount": "+Rp 1.500.000",
+    "type": "Top Up"
+  },
+  {
+    "id": "t3",
+    "category": "Pay",
+    "title": "Coffee at Kafe Kita",
+    "date": "May 3, 2026",
+    "amount": "-Rp 65.000",
+    "type": "Send"
+  },
+  {
+    "id": "t4",
+    "category": "Request",
+    "title": "Invoice from Nadi",
+    "date": "May 2, 2026",
+    "amount": "+Rp 420.000",
+    "type": "Top Up"
+  },
+  {
+    "id": "t5",
+    "category": "Payment",
+    "title": "Online Shopping",
+    "date": "May 1, 2026",
+    "amount": "-Rp 845.000",
+    "type": "Send"
+  }
+]
