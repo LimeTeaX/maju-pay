@@ -12,7 +12,7 @@ const actionButtons = [
   { label: 'Request', action: 'activity', icon: '🔔' },
 ];
 
-export default function DashboardPage({ onStartTopUp, onShowActivity, onScan, onSend }) {
+export default function DashboardPage({ onStartTopUp, onShowActivity }) {
   const { displayBalance, visible, toggleVisible, transactions } = useContext(WalletContext);
 
   const containerVariants = {
@@ -100,13 +100,11 @@ export default function DashboardPage({ onStartTopUp, onShowActivity, onScan, on
                   key={button.label}
                   type="button"
                   onClick={
-                    button.action === 'scan'
-                      ? onScan
-                      : button.action === 'topup'
+                    button.action === 'topup'
                       ? onStartTopUp
-                      : button.action === 'send'
-                      ? onSend
-                      : onShowActivity
+                      : button.action === 'activity'
+                      ? onShowActivity
+                      : () => {} // Placeholder untuk fitur yang belum diimplementasikan
                   }
                   className="flex flex-col items-center gap-2 p-3 rounded-2xl bg-gradient-to-br from-dana-light to-white border border-gray-100 hover:border-dana-blue hover:shadow-md transition-all active:scale-95"
                 >
@@ -131,7 +129,7 @@ export default function DashboardPage({ onStartTopUp, onShowActivity, onScan, on
             </div>
 
             {transactions && transactions.length > 0 ? (
-              <div className="space-y-3 max-h-64 overflow-y-auto scrollbar-touch">
+              <div className="flex flex-col gap-3">
                 {transactions.slice(0, 5).map((transaction, index) => (
                   <motion.div
                     key={transaction.id}

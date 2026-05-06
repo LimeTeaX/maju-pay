@@ -8,6 +8,9 @@ import ChoosePaymentPage from './pages/ChoosePaymentPage.jsx';
 import PinConfirmationPage from './pages/PinConfirmationPage.jsx';
 import Navbar from './components/organisms/Navbar.jsx';
 import BottomNav from './components/organisms/BottomNav.jsx';
+import SendPages from './pages/SendPages.jsx';
+import RewardsPage from './pages/RewardsPage.jsx';
+import ProfilePage from './pages/ProfilePage.jsx';
 
 const pageTransition = {
   initial: { opacity: 0, x: 32 },
@@ -81,7 +84,7 @@ function App() {
       {/* Subtle background gradient */}
       <div className="pointer-events-none fixed inset-0 bg-gradient-to-br from-dana-light via-white to-white opacity-50" />
       
-      <div className="relative mx-auto min-h-screen max-w-md px-0 pb-24 sm:px-0">
+      <div className="relative mx-auto min-h-screen max-w-md px-4 pb-24 sm:px-6">
         <Navbar activeStep={step} onNavigate={setStep} />
         
         <main className="pt-0">
@@ -97,8 +100,6 @@ function App() {
                 <DashboardPage
                   onStartTopUp={() => setStep(1)}
                   onShowActivity={() => setStep(4)}
-                  onScan={() => setStep(0)}
-                  onSend={() => setStep(0)}
                 />
               )}
               {step === 1 && (
@@ -130,6 +131,9 @@ function App() {
                 />
               )}
               {step === 4 && <ActivityPage onNavigateHome={handleReset} />}
+              {step === 5 && <SendPage onBack={() => setStep(0)} />}
+              {step === 6 && <RewardsPage onBack={() => setStep(0)} />}
+              {step === 7 && <ProfilePage onBack={() => setStep(0)} />}
             </motion.div>
           </AnimatePresence>
         </main>

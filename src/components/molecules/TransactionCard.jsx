@@ -26,7 +26,7 @@ export default function TransactionCard({ item }) {
         </div>
         <div>
           <p className="text-sm font-semibold text-gray-900">{item.title}</p>
-          <p className="text-xs text-gray-500">{item.date}</p>
+          <p className="text-sm text-gray-500">{item.date}</p>
         </div>
       </div>
       <div className={`text-right text-sm font-bold ${colorClass}`}>

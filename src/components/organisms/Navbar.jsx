@@ -1,3 +1,4 @@
+// src/components/organisms/Navbar.jsx
 import { Wallet } from 'lucide-react';
 
 export default function Navbar({ activeStep, onNavigate }) {
@@ -36,6 +37,17 @@ export default function Navbar({ activeStep, onNavigate }) {
             }`}
           >
             Activity
+          </button>
+          <button
+            type="button"
+            onClick={() => onNavigate(5)}
+            className={`rounded-lg px-4 py-2 text-sm font-semibold transition-all ${
+              activeStep === 5
+                ? 'bg-dana-light text-dana-blue'
+                : 'text-gray-600 hover:text-dana-blue hover:bg-gray-50'
+            }`}
+          >
+            Send
           </button>
         </nav>
       </div>

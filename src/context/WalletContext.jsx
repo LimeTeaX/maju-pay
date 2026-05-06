@@ -4,7 +4,8 @@ import initialTransactions from '../data/transactions.json';
 export const WalletContext = createContext({});
 
 export function WalletProvider({ children }) {
-  const [balance, setBalance] = useState(99800);
+  // Sinkronkan dengan transaksi yang ada (Rp 12,987,500 dari transaksi)
+  const [balance, setBalance] = useState(12987500);
   const [visible, setVisible] = useState(true);
   const [transactions, setTransactions] = useState(initialTransactions);
   const [flicker, setFlicker] = useState(0);
@@ -34,21 +35,20 @@ export function WalletProvider({ children }) {
     setBalance((current) => current + amount);
 
     // Add transaction
-    setTransactions((current) => [
-      {
-        id: `t-${Date.now()}`,
-        category: 'Top Up',
-        title: 'Top Up via MajuPay',
-        date: new Date().toLocaleDateString('id-ID', {
-          day: 'numeric',
-          month: 'short',
-          year: 'numeric',
-        }),
-        amount: `+Rp ${new Intl.NumberFormat('id-ID').format(amount)}`,
-        type: 'Top Up',
-      },
-      ...current,
-    ]);
+    const newTransaction = {
+      id: `t-${Date.now()}`,
+      category: 'Top Up',
+      title: 'Top Up via MajuPay',
+      date: new Date().toLocaleDateString('id-ID', {
+        day: 'numeric',
+        month: 'short',
+        year: 'numeric',
+      }),
+      amount: `+Rp ${new Intl.NumberFormat('id-ID').format(amount)}`,
+      type: 'Top Up',
+    };
+    
+    setTransactions((current) => [newTransaction, ...current]);
   };
 
   const value = useMemo(
