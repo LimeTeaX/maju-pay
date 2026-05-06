@@ -1,3 +1,4 @@
+// src/components/molecules/TransactionCard.jsx
 import { ArrowUp, ArrowDown, CreditCard } from 'lucide-react';
 
 export default function TransactionCard({ item }) {
@@ -19,17 +20,17 @@ export default function TransactionCard({ item }) {
   const Icon = isIncome ? ArrowDown : isSpending ? ArrowUp : CreditCard;
 
   return (
-    <div className="flex items-center justify-between rounded-2xl bg-white border border-gray-200 px-4 py-3 hover:shadow-sm transition-shadow">
-      <div className="flex items-center gap-3">
-        <div className={`flex h-10 w-10 items-center justify-center rounded-lg ${iconClass}`}>
-          <Icon className={`h-5 w-5 ${colorClass}`} strokeWidth={2.5} />
+    <div className="flex items-center justify-between rounded-xl sm:rounded-2xl bg-white border border-gray-200 px-2 sm:px-4 py-2 sm:py-3 hover:shadow-sm transition-shadow">
+      <div className="flex items-center gap-2 sm:gap-3 flex-1 min-w-0">
+        <div className={`flex h-8 w-8 sm:h-10 sm:w-10 items-center justify-center rounded-lg shrink-0 ${iconClass}`}>
+          <Icon className={`h-4 w-4 sm:h-5 sm:w-5 ${colorClass}`} strokeWidth={2.5} />
         </div>
-        <div>
-          <p className="text-sm font-semibold text-gray-900">{item.title}</p>
-          <p className="text-sm text-gray-500">{item.date}</p>
+        <div className="flex-1 min-w-0">
+          <p className="text-xs sm:text-sm font-semibold text-gray-900 truncate">{item.title}</p>
+          <p className="text-[10px] sm:text-xs text-gray-500">{item.date}</p>
         </div>
       </div>
-      <div className={`text-right text-sm font-bold ${colorClass}`}>
+      <div className={`text-right text-xs sm:text-sm font-bold ${colorClass} shrink-0 ml-2`}>
         {item.amount}
       </div>
     </div>

@@ -8,9 +8,10 @@ import ChoosePaymentPage from './pages/ChoosePaymentPage.jsx';
 import PinConfirmationPage from './pages/PinConfirmationPage.jsx';
 import Navbar from './components/organisms/Navbar.jsx';
 import BottomNav from './components/organisms/BottomNav.jsx';
-import SendPages from './pages/SendPages.jsx';
+import SendPage from './pages/SendPage.jsx';
 import RewardsPage from './pages/RewardsPage.jsx';
 import ProfilePage from './pages/ProfilePage.jsx';
+import ScanQRPage from './pages/ScanQRPage.jsx';
 
 const pageTransition = {
   initial: { opacity: 0, x: 32 },
@@ -29,6 +30,7 @@ function App() {
   const [pinError, setPinError] = useState(false);
   const correctPin = '6381';
   const wallet = useContext(WalletContext);
+  const [scanData, setScanData] = useState(null);
 
   const handleTopUpContinue = (amount) => {
     if (amount <= 0) {
@@ -79,6 +81,16 @@ function App() {
     setPinError(false);
   };
 
+  const handleScanSuccess = (data) => {
+  setScanData(data);
+  setStep(8); // step khusus untuk hasil scan
+  // Atau langsung arahkan ke send page
+  if (data.type === 'send') {
+    setPendingAmount(data.amount);
+    setStep(5); // ke send page
+  }
+  };
+
   return (
     <div className="relative min-h-screen bg-white text-gray-900">
       {/* Subtle background gradient */}
@@ -100,6 +112,8 @@ function App() {
                 <DashboardPage
                   onStartTopUp={() => setStep(1)}
                   onShowActivity={() => setStep(4)}
+                  onNavigateToSend={() => setStep(5)}
+                  onNavigateToScan={() => setStep(8)}
                 />
               )}
               {step === 1 && (
@@ -133,7 +147,20 @@ function App() {
               {step === 4 && <ActivityPage onNavigateHome={handleReset} />}
               {step === 5 && <SendPage onBack={() => setStep(0)} />}
               {step === 6 && <RewardsPage onBack={() => setStep(0)} />}
-              {step === 7 && <ProfilePage onBack={() => setStep(0)} />}
+              {step === 7 && 
+                <ProfilePage 
+                  onBack={() => setStep(0)} 
+                />}
+              {step === 8 && (
+                <ScanQRPage 
+                  onBack={() => setStep(0)} 
+                  onScanSuccess={(data) => {
+                  console.log('Hasil scan:', data);
+                  alert(`QR Code terdeteksi: ${data.data}`);
+                  setStep(0);
+                }}
+                />
+              )}
             </motion.div>
           </AnimatePresence>
         </main>

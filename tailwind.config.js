@@ -9,6 +9,13 @@ export default {
           light: '#E3F2FD',
         },
       },
+      screens: {
+        'xs': '475px',
+        'sm': '640px',
+        'md': '768px',
+        'lg': '1024px',
+        'xl': '1280px',
+      },
       boxShadow: {
         glass: '0 20px 60px rgba(15, 23, 42, 0.25)',
         'dana-sm': '0 2px 8px rgba(17, 142, 234, 0.08)',
